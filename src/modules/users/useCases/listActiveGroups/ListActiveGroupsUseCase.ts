@@ -12,7 +12,7 @@ export class ListActiveGroupsUseCase {
         users: true,
       },
       orderBy: {
-        group: 'asc',
+        group: "asc",
       },
     });
 

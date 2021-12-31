@@ -16,7 +16,7 @@ export class ListActiveUsersUseCase {
         groups: true,
       },
       orderBy: {
-        fullName: 'asc',
+        fullName: "asc",
       },
     });
 

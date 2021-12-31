@@ -1,8 +1,8 @@
-import knexjs from 'knex';
+import knexjs from "knex";
 
 const knexConfig = {
   development: {
-    client: 'pg',
+    client: "pg",
     connection: {
       host: <string>process.env.SIGH_DB_HOST,
       port: <string>process.env.SIGH_DB_PORT,
@@ -15,4 +15,4 @@ const knexConfig = {
 
 const knex = knexjs(knexConfig.development);
 
-export { knex }
+export { knex };

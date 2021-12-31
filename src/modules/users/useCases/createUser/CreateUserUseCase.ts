@@ -27,7 +27,7 @@ export class CreateUserUseCase {
       throw new AppError("Username already taken.", 409);
     }
 
-    if (!!user.email) {
+    if (user.email) {
       const emailInUse = await prisma.user.findFirst({
         where: {
           email: {

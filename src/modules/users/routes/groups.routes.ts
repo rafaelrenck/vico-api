@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router } from "express";
 
 import { checkToken } from "../../../middlewares/checkToken";
-import { CreateGroupController } from '../useCases/createGroup/CreateGroupController';
-import { ListActiveGroupsController } from '../useCases/listActiveGroups/ListActiveGroupsController';
+import { CreateGroupController } from "../useCases/createGroup/CreateGroupController";
+import { ListActiveGroupsController } from "../useCases/listActiveGroups/ListActiveGroupsController";
 
 const groupsRoutes = Router();
 
@@ -11,6 +11,6 @@ const listActiveGroupsController = new ListActiveGroupsController();
 
 groupsRoutes.post("/", checkToken, createGroupController.handle);
 
-groupsRoutes.get("/active", checkToken, listActiveGroupsController.handle)
+groupsRoutes.get("/", checkToken, listActiveGroupsController.handle);
 
 export { groupsRoutes };

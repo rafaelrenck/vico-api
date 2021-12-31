@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from "express";
 
 import { checkToken } from "../../../middlewares/checkToken";
 import { LoginController } from "../useCases/login/LoginController";

@@ -14,7 +14,7 @@ export async function checkToken(request: Request, response: Response, next: Nex
     throw new AppError("Token are not provided.", 401);
   }
 
-  const [, token] = authHeader.split(' ');
+  const [, token] = authHeader.split(" ");
 
   try {
     const { sub: userId } = verify(token, <string>process.env.APP_SECRET) as TokenPayload;
