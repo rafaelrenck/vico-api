@@ -7,7 +7,7 @@ import { AppError } from "../../../../errors/AppError";
 type Credentials = {
   username: string;
   password: string;
-}
+};
 
 export class LoginUseCase {
   async execute({ username, password }: Credentials) {
@@ -20,7 +20,15 @@ export class LoginUseCase {
         active: true,
       },
       include: {
-        groups: true,
+        groups: {
+          select: {
+            group: {
+              select: {
+                group: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -39,6 +47,8 @@ export class LoginUseCase {
       expiresIn: "1d",
     });
 
+    const groupsResult = userExists.groups.map((group) => group.group.group);
+
     return {
       user: {
         id: userExists.id,
@@ -47,7 +57,7 @@ export class LoginUseCase {
         shortName: userExists.shortName,
         email: userExists.email,
         avatar: userExists.avatar,
-        groups: userExists.groups,
+        groups: groupsResult,
       },
       token,
     };

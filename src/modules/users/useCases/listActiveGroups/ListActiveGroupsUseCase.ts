@@ -17,5 +17,5 @@ export class ListActiveGroupsUseCase {
     });
 
     return groups;
-  };
+  }
 }

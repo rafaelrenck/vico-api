@@ -1,6 +1,5 @@
 import { Router } from "express";
 
-import { checkToken } from "../../../middlewares/checkToken";
 import { CreateUserController } from "../useCases/createUser/CreateUserController";
 import { ListActiveUsersController } from "../useCases/listActiveUsers/ListActiveUsersController";
 
@@ -9,8 +8,8 @@ const usersRoutes = Router();
 const createUserController = new CreateUserController();
 const listActiveUsersController = new ListActiveUsersController();
 
-usersRoutes.post("/", checkToken, createUserController.handle);
+usersRoutes.post("/", createUserController.handle);
 
-usersRoutes.get("/", checkToken, listActiveUsersController.handle);
+usersRoutes.get("/", listActiveUsersController.handle);
 
 export { usersRoutes };

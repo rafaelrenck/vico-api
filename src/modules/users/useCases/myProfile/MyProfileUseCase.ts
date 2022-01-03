@@ -11,13 +11,23 @@ export class MyProfileUseCase {
         active: true,
       },
       include: {
-        groups: true,
-      }
+        groups: {
+          select: {
+            group: {
+              select: {
+                group: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!userExists) {
       throw new AppError("User does not exists.", 406);
     }
+
+    const groupsResult = userExists.groups.map((group) => group.group.group);
 
     return {
       id: userExists.id,
@@ -26,7 +36,7 @@ export class MyProfileUseCase {
       shortName: userExists.shortName,
       email: userExists.email,
       avatar: userExists.avatar,
-      groups: userExists.groups,
+      groups: groupsResult,
     };
   }
 }

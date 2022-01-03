@@ -13,13 +13,25 @@ export class ListActiveUsersUseCase {
         shortName: true,
         email: true,
         avatar: true,
-        groups: true,
+        groups: {
+          select: {
+            group: {
+              select: {
+                group: true,
+              },
+            },
+          },
+        },
       },
       orderBy: {
         fullName: "asc",
       },
     });
 
-    return users;
-  };
+    const usersResult = users.map((user) => {
+      return { ...user, groups: user.groups.map((group) => group.group.group) };
+    });
+
+    return usersResult;
+  }
 }

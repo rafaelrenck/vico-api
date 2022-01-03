@@ -7,7 +7,11 @@ type TokenPayload = {
   sub: string;
 };
 
-export async function checkToken(request: Request, response: Response, next: NextFunction): Promise<void> {
+export async function checkToken(
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<void> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -17,7 +21,10 @@ export async function checkToken(request: Request, response: Response, next: Nex
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: userId } = verify(token, <string>process.env.APP_SECRET) as TokenPayload;
+    const { sub: userId } = verify(
+      token,
+      <string>process.env.APP_SECRET
+    ) as TokenPayload;
 
     request.userId = userId;
 

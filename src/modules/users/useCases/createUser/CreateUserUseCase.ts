@@ -10,7 +10,7 @@ type User = {
   shortName: string;
   email?: string;
   avatar?: string;
-}
+};
 
 export class CreateUserUseCase {
   async execute(user: User) {
@@ -47,7 +47,7 @@ export class CreateUserUseCase {
     const newUser = { ...user, password: hashedPassword };
 
     const result = await prisma.user.create({
-      data: newUser
+      data: newUser,
     });
 
     return {
